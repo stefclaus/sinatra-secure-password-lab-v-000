@@ -42,14 +42,11 @@ class ApplicationController < Sinatra::Base
 
 	post "/login" do
 
-    if
-      User.find_by(:username => params[:username], :password => params[:password])
-      redirect '/account'
-    elsif params[:username] == "" || params[:password] == ""
+    if params[:username] == "" || params[:password] == ""
       redirect '/failure'
     else
-      redirect '/failure'
-
+      User.find_by(:username => params[:username], :password => params[:password])
+      erb :account
     end
 
 	end
